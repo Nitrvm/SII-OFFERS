@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<robot generator="Robot 6.0.2 (Python 3.11.3 on win32)" generated="20230424 09:50:46.347" rpa="false" schemaversion="3">
+<suite id="s1" name="Robot Interactive Console" source="d:\Users\martin.jautee\.vscode\extensions\robocorp.robotframework-lsp-1.10.0\src\robotframework_ls\vendored\robotframework_interactive\robot_interactive_console.robot">
+<test id="s1-t1" name="Default Task/Test" line="5">
+<kw name="Interpreter Main Loop" library="MainLoop">
+<kw name="Connexion à la page">
+<arg>${url}</arg>
+<msg timestamp="20230424 09:50:46.847" level="FAIL">No keyword with name 'Connexion à la page' found.</msg>
+<status status="FAIL" starttime="20230424 09:50:46.847" endtime="20230424 09:50:46.847"/>
+</kw>
+<kw name="Récuperation des annonces">
+<status status="NOT RUN" starttime="20230424 09:50:46.848" endtime="20230424 09:50:46.848"/>
+</kw>
+<kw name="Filtrage des annonces">
+<status status="NOT RUN" starttime="20230424 09:50:46.849" endtime="20230424 09:50:46.849"/>
+</kw>
+<status status="PASS" starttime="20230424 09:50:46.367" endtime="20230424 09:50:47.928"/>
+</kw>
+<status status="PASS" starttime="20230424 09:50:46.367" endtime="20230424 09:50:47.928"/>
+</test>
+<status status="PASS" starttime="20230424 09:50:46.348" endtime="20230424 09:50:47.929"/>
+</suite>
+<statistics>
+<total>
+<stat pass="1" fail="0" skip="0">All Tests</stat>
+</total>
+<tag>
+</tag>
+<suite>
+<stat pass="1" fail="0" skip="0" id="s1" name="Robot Interactive Console">Robot Interactive Console</stat>
+</suite>
+</statistics>
+<errors>
+</errors>
+</robot>
