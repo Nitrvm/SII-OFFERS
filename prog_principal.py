@@ -12,6 +12,7 @@ import webbrowser
 import sys
 import  json
 import requests
+
 #Connexion à la page 
 
 def connexion_page(url):
