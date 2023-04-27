@@ -10,7 +10,7 @@ Library    String
 
 
 *** Variables ***
-${url}    file:///D:/Users/martin.jautee/Documents/Projet%20Offers/test/code.html
+${url}    file:///D:/Users/martin.jautee/Documents/SII-OFFERS/test/code.html
 ${villes_def}     all
 ${auteurs_def}    all  
 ${agences_def}    all    
