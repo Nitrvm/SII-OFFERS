@@ -21,20 +21,21 @@ ${nb_jour}    0
 
 
 *** Test Cases ***
-Test filtrage par defaut
+Initialisation
     Connexion à la page    ${url}
     Récuperation des annonces
+
+Filtrage par defaut
     Filtrage des annonces
 
-Test filtrage specifique
-    Connexion à la page    ${url}
-    Récuperation des annonces
+Filtrage specifique
     @{villes_def}    Split String   ${villes_def}    separator=,     
     @{auteurs_def}    Split String       ${auteurs_def}    separator=,
     @{agences_def}    Split String       ${agences_def}    separator=,
     @{statuts_def}    Split String       ${statuts_def}    separator=,
     @{dernier_editeurs_def}    Split String       ${dernier_editeurs_def}    separator=,
     Filtrage des annonces    ${villes_def}    ${auteurs_def}     ${agences_def}    ${statuts_def}    ${dernier_editeurs_def}    ${nb_jour}
+
 
 *** keywords ***
 Connexion à la page
