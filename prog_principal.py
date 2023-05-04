@@ -202,7 +202,7 @@ def filtre(villes="all", auteurs="all", agences="all", statuts="all", dernier_ed
 
     """
     
-    with open('filtres.json', "r", encoding='utf-8') as fichier_filtres:
+    with open("filtres.json", "r", encoding='utf-8') as fichier_filtres:
         filtres = json.load(fichier_filtres)
         
     villes = filtres["Lieu"] if villes == "all" else villes
@@ -237,7 +237,7 @@ def filtre(villes="all", auteurs="all", agences="all", statuts="all", dernier_ed
 
     #filtrage depuis le fichier data.json
         
-    with open('data.json', 'r', encoding='utf-8') as fichier_annonces:
+    with open("data.json", 'r', encoding='utf-8') as fichier_annonces:
         annonces = json.load(fichier_annonces)
         liste_annonce = [annonce for annonce in annonces.values()]
     
