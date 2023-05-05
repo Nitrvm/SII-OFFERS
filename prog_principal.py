@@ -33,6 +33,9 @@ def connexion_page(url):
 
 #Récuperation des annonces
 
+
+    
+
 def liste_cle():
     """
     Récupère une liste des clés qui represente les en têtes du tableau de la page web.
@@ -202,7 +205,7 @@ def filtre(villes="all", auteurs="all", agences="all", statuts="all", dernier_ed
 
     """
     
-    with open("filtres.json", "r", encoding='utf-8') as fichier_filtres:
+    with open("D:/Users/martin.jautee/Documents/SII-OFFERS/filtres.json", "r", encoding='utf-8') as fichier_filtres:
         filtres = json.load(fichier_filtres)
         
     villes = filtres["Lieu"] if villes == "all" else villes
@@ -237,7 +240,7 @@ def filtre(villes="all", auteurs="all", agences="all", statuts="all", dernier_ed
 
     #filtrage depuis le fichier data.json
         
-    with open("data.json", 'r', encoding='utf-8') as fichier_annonces:
+    with open("D:/Users/martin.jautee/Documents/SII-OFFERS/data.json", 'r', encoding='utf-8') as fichier_annonces:
         annonces = json.load(fichier_annonces)
         liste_annonce = [annonce for annonce in annonces.values()]
     

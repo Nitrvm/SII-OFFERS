@@ -1,43 +1,43 @@
 {
     "Lieu": [
-        "Strasbourg",
+        "Le Mans",
         "Rennes",
-        "Caen",
         "Lannion",
-        "Brest",
-        "Le Mans"
+        "Strasbourg",
+        "Caen",
+        "Brest"
     ],
     "Author": [
-        "hlefevre",
-        "Anonymous (non vérifié)",
-        "afromentoux",
-        "Robert",
-        "TEST",
-        "mlemen",
-        "Admin-lqSbNvM-…",
         "margaux.veuillot",
-        "julia.luconi",
         "camille.fossey",
+        "Anonymous (non vérifié)",
+        "hlefevre",
         "timothee.potier",
+        "marjorie.lhostis",
+        "afromentoux",
+        "TEST",
         "bjouault",
-        "marjorie.lhostis"
+        "julia.luconi",
+        "mlemen",
+        "Robert",
+        "Admin-lqSbNvM-…"
     ],
     "Agency": [
         "SII EST",
         "SII Ouest"
     ],
     "Status": [
-        "Unpublished",
-        "Published"
+        "Published",
+        "Unpublished"
     ],
     "Last update by": [
-        "afromentoux",
-        "mlemen",
         "margaux.veuillot",
-        "julia.luconi",
         "camille.fossey",
         "timothee.potier",
+        "marjorie.lhostis",
+        "afromentoux",
         "bjouault",
-        "marjorie.lhostis"
+        "julia.luconi",
+        "mlemen"
     ]
 }

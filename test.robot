@@ -1,5 +1,6 @@
 *** Settings ***
 Library    prog_principal.py
+Library    authentification.py
 Library    SeleniumLibrary
 Library    OperatingSystem
 Library    BuiltIn
@@ -17,7 +18,8 @@ ${agences_def}    all
 ${statuts_def}    all    
 ${dernier_editeurs_def}    all     
 ${nb_jour}    0
-
+${mdp}    martin
+${login}    test
 
 
 *** Test Cases ***
@@ -44,18 +46,19 @@ Connexion à la page
     Connexion Page    ${url}
 
 
+
 Récuperation des annonces
     [Tags]    Récuperer toutes les annonces par pages et creer deux fichiers json, un pour les filtres et un autres pour les annonces 
     ${result}=    Run Keyword    Recuperer Donnees Pages
     ${dictionnaire_annonces}=    Set Variable    ${result}
     Set Suite Variable    ${dictionnaire_annonces}
-    Log    ${dictionnaire_annonces}
+    
 
 Filtrage des annonces
     [Tags]    Filtrage des annonces en fonction des élément placé en parametre    
     [Arguments]    ${villes}=all    ${auteurs}=all    ${agences}=all    ${status}=all   ${dernier_editeurs}=all    ${nb_jour}=0
     ${result}    Filtre    ${villes}    ${auteurs}     ${agences}    ${status}    ${dernier_editeurs}    ${nb_jour}
-    Log    ${result}
+    
 
 
 
