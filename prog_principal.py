@@ -76,11 +76,10 @@ def extraire_donnees_ligne(ligne, liste_cles):
         for key in range(1,len(liste)):
             dico_ligne[liste[key-1]] = colonnes_text[key]
         id = colonnes[-1].find_element(By.XPATH,('.//li/a')).get_attribute('href').split('/')[6] # Extraction du l'ID à partir d'un lien
-        liste_liens = [colonne.get_attribute('href').split(":")[2] for colonne in colonnes[-1].find_elements(By.XPATH,('.//li/a'))] # Créer une liste de liens
+        liste_liens = [colonne.get_attribute('href') for colonne in colonnes[-1].find_elements(By.XPATH,('.//li/a'))] # Créer une liste de liens
         dico_ligne["lien republication"] = liste_liens[2]
-        dico_ligne["lien suppression"] = liste_liens[4] 
     except:
-        print(f"caca : {sys.exc_info}")
+        print(f"Erreur : {sys.exc_info}")
     return id, dico_ligne
 
     
@@ -268,12 +267,13 @@ def verif_elements_liste(elements, liste):
 
 #Action sur les annonces           
 
-def action_annonces(liste, lien_action):
+def republication(liste):
     
     for annonces in liste:
-        lien = annonces[lien_action]
+        lien = annonces["lien republication"]
         try:
-            requests.get(lien)
+            driver.get(lien)
+            #driver.execute_script(f"window.open('{lien}', '_blank')")
             print("action effectuée")
         except:
             print("lien invalide")
@@ -285,9 +285,11 @@ if __name__=="__main__":
     
     connexion_page(os.getcwd()+'/test/code.html')
     recuperer_donnees_pages()
-    test = filtre()
+    test = filtre(statuts=['Unpublished'])
     pprint(test)
+    #republication(test)
     
+
     
     
     
