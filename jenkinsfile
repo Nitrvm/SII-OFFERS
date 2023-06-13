@@ -1,0 +1,132 @@
+//Fonction
+def message_connexion(indice) {
+    if (indice == 0) {
+        return 'Entrez vos informations de connexion au Portail SII'
+    } else {
+        return "Les identifiants sont incorrects, veuillez reéssayer (encore ${4 - indice} tentatives)"
+    }
+}
+
+pipeline {
+    agent any
+    
+    stages {
+        stage('Connexion SII Offers') {
+            steps {
+               
+                script {
+                    
+                    def connexion_reussie = false
+                    def indice = -1
+                    
+                    ansiColor('xterm'){
+                        while (!connexion_reussie) {
+                            indice += 1
+                            if (indice <= 3){
+    
+                                def identifiants = input message: message_connexion(indice) , parameters: [
+                                    string(description: 'Saisie du nom d\'utilisateur', name: 'Login'),
+                                    password(description: 'Saisie du mot de passe', name: 'Password')]
+                                    
+                                def password = identifiants.Password
+                            
+                                wrap([$class: 'MaskPasswordsBuildWrapper', varPasswordPairs: [[password: password]]]) {
+                                    withEnv(["SECRET=${password}"]) {
+                                        def resultat = bat returnStdout: true, script: "python D:\\Users\\martin.jautee\\Documents\\SII-OFFERS\\authentification.py ${identifiants.Login} %SECRET%"
+                                        
+                                        if (resultat.contains("yes")) {
+                                            
+                                            echo "\u001B[1;32mCONNEXION REUSSIE !\u001B[0m"
+                                            
+                                            connexion_reussie = true
+                                        }
+                                    }
+                                }
+                                
+                            } else {
+                                def msg_erreur = "LE NOMBRE MAXIMAL DE TENTATIVES A ETE DEPASSE !!!"
+                                error(msg_erreur)
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        
+        
+       
+    
+        stage('Republication des annonces') {
+            steps {
+                script {
+                    ansiColor('xterm'){
+                        def i = 1
+                        json = readJSON(file: "D:/Users/martin.jautee/Documents/SII-OFFERS/filtres.json")
+                        
+                        while (i == 1){
+                                                 
+                            def filtres = input message: 'Sélection des éléments de filtrage', 
+                            parameters: [
+                            string(defaultValue: '0', description: "Nombre de jours à partir duquel les annonces seront sélectionnées", name: 'Nombre de jour'), 
+                            extendedChoice(description: "Choix des villes", multiSelectDelimiter: ',', name: 'Villes', quoteValue: true, saveJSONParameterToFile: false, type: 'PT_CHECKBOX', value: String.join(", ", json.Lieu), visibleItemCount: 10), 
+                            extendedChoice(description: 'Choix des auteurs', multiSelectDelimiter: ',', name: 'Auteurs', quoteValue: true, saveJSONParameterToFile: false, type: 'PT_CHECKBOX', value: String.join(", ", json.Author), visibleItemCount: 10), 
+                            extendedChoice(description: 'Choix des agences', multiSelectDelimiter: ',', name: 'Agences', quoteValue: true, saveJSONParameterToFile: false, type: 'PT_CHECKBOX', value: String.join(", ", json.Agency), visibleItemCount: 10), 
+                            extendedChoice(description: 'Choix du statut', multiSelectDelimiter: ',', name: 'Statuts', quoteValue: true, saveJSONParameterToFile: false, type: 'PT_CHECKBOX', value: String.join(", ", json.Status), visibleItemCount: 10), 
+                            extendedChoice(description: 'Choix des derniers éditeurs compris dans les annonces', multiSelectDelimiter: ',', name: 'Editeurs', quoteValue: true, saveJSONParameterToFile: false, type: 'PT_CHECKBOX', value: String.join(", ", json."Last update by"), visibleItemCount: 10)]
+                                                    
+                                                    
+                            if (filtres["Villes"] == '""' && filtres["Auteurs"] == '""' && filtres["Agences"] == '""' && filtres["Statuts"] == '""' && filtres["Editeurs"] == '""' && filtres['Nombre de jour'] == "0") {
+                                echo "\u001B[1;31mAucun filtrage mis en place, la republication ne sera pas effectuée\u001B[0m"
+                                break
+                            } else {
+                                //Commande
+                                bat """ 
+                                    @echo off
+                                    chcp 65001
+                                    robot --test Filtrage --variable nb_jour:${filtres['Nombre de jour']} --variable villes_def:${filtres['Villes']} --variable auteurs_def:${filtres['Auteurs']} --variable agences_def:${filtres['Agences']} --variable statuts_def:${filtres['Statuts']} --variable dernier_editeurs_def:${filtres['Editeurs']} D:\\Users\\martin.jautee\\Documents\\SII-OFFERS\\test.robot
+                                    @echo on
+                                    """
+                                                        
+                                def fichier_annonces = readFile(file: "D:/Users/martin.jautee/Documents/SII-OFFERS/annonces.json", encoding: 'UTF8')
+                                def annonces = readJSON(text: fichier_annonces)
+                                                
+                                for (annonce in annonces) {
+                                    echo "[\u001B[1mAnnonce ${i}\u001B[0m | \u001B[1;30mTitre : \u001B[34m${annonce.Title}\u001B[0m | \u001B[1;30mVille : \u001B[34m${annonce.Lieu}\u001B[0m | \u001B[1;30mAgence : \u001B[34m${annonce.Agency}\u001B[0m | \u001B[1;30mAuteur : \u001B[34m${annonce.Author}\u001B[0m | \u001B[1;30mDernier éditeur : \u001B[34m${annonce['Last update by']}\u001B[0m | \u001B[1;30mStatut : \u001B[34m${annonce.Status}\u001B[0m | \u001B[1;30mDate : \u001B[34m${annonce['Updated Trier par ordre croissant']}\u001B[0m ]" 
+                                    i += 1
+                                }
+                                                            
+                                if (i == 1){
+                                    echo "\u001B[1;31mAucune annonce ne correspond à ce filtrage, veuillez réessayer \n ↓↓↓↓↓↓↓↓↓↓↓\u001B[0m"
+                                }
+                                
+                                else {
+                                    echo "\u001B[1mNombre d'annonces à republiées : ${i-1}\u001B[0m"
+                                    
+                                    echo "\u001B[1mEtes vous sur de vouloir republier ces annonces ?\u001B[0m \n ↓↓↓↓↓↓↓↓↓↓↓"
+                                    
+                                    
+                                    def Confirmation = input message: '', parameters: [extendedChoice(description: 'OK pour confirmer la republication des annonces', multiSelectDelimiter: ',', name: 'Confirmation', quoteValue: false, saveJSONParameterToFile: false, type: 'PT_CHECKBOX', value: 'OK', visibleItemCount: 5)]
+                                    
+                                    if (Confirmation == "OK" ) {
+                                        
+                                        bat """ 
+                                            @echo off
+                                            chcp 65001
+                                            robot --test Republication --variable nb_jour:${filtres['Nombre de jour']} --variable villes_def:${filtres['Villes']} --variable auteurs_def:${filtres['Auteurs']} --variable agences_def:${filtres['Agences']} --variable statuts_def:${filtres['Statuts']} --variable dernier_editeurs_def:${filtres['Editeurs']} D:\\Users\\martin.jautee\\Documents\\SII-OFFERS\\test.robot
+                                            @echo on
+                                            """
+                                        
+                                        echo "\u001B[1;32mLes annonces ont été republiés !\u001B[0m"
+                                    }
+                                    else {
+                                        echo "\u001B[1;31mLa confirmation n'a pas été validée, la republication ne sera pas effectuée !\u001B[0m"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

@@ -4,6 +4,7 @@ import time
 import getpass
 import argparse
 
+
 def authentification(login, mdp):
     
     options = webdriver.ChromeOptions()
@@ -17,27 +18,24 @@ def authentification(login, mdp):
 
     champs_mdp = driver.find_element(By.ID, "edit-pass")
     champs_mdp.send_keys(mdp)
-    
-    time.sleep(1)
+
     btn = driver.find_element(By.ID,"edit-submit")
     
     try:
         btn.click()
         print('success')
-        time.sleep(2)
     except:
         print('fail')
-    time.sleep(2)
-
+    
     try:
         mattermost = driver.find_elements(By.CLASS_NAME,"field__item")[12]
         mattermost.click()
-        time.sleep(2)
         print('yes')
     except:
-        print('caca')
+        print('no')
+        
 
-    
+
 
         
 
@@ -48,6 +46,7 @@ if __name__=="__main__":
     parser.add_argument("mdp", help="password")
     args = parser.parse_args()
     authentification(args.login, args.mdp)
+    
    
 
 

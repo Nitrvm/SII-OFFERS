@@ -12,6 +12,10 @@ import webbrowser
 import sys
 import  json
 import requests
+import argparse
+import smtplib
+from email.message import EmailMessage
+from email.mime.text import MIMEText
 
 #Connexion à la page 
 
@@ -31,11 +35,10 @@ def connexion_page(url):
     driver = webdriver.Chrome(options=options)
     driver.get(url)
 
+
+
 #Récuperation des annonces
-
-
     
-
 def liste_cle():
     """
     Récupère une liste des clés qui represente les en têtes du tableau de la page web.
@@ -129,12 +132,12 @@ def recuperer_donnees_pages():
         page_suivante = verifier_element_present("//li[@class='pager__item pager__item--next']/a")
         if page_suivante is True:
             driver.find_element(By.XPATH,"//li[@class='pager__item pager__item--next']/a").click()
-    with open("data.json", "w" , encoding='utf-8') as fichier:
+    with open("D:/Users/martin.jautee/Documents/SII-OFFERS/data.json", "w" , encoding='utf-8') as fichier:
         json.dump(dictionnaire,fichier,indent=4, ensure_ascii=False)
     dico_filtre = {"Lieu":"","Author":"","Agency":"","Status":"", "Last update by": ""}
     for key in dico_filtre.keys():
         dico_filtre[key]=list({value[key] for value in dictionnaire.values()})
-    with open("filtres.json", "w", encoding='utf-8') as fichier:
+    with open("D:/Users/martin.jautee/Documents/SII-OFFERS/filtres.json", "w", encoding='utf-8') as fichier:
         json.dump(dico_filtre,fichier,indent=4, ensure_ascii=False)
     return dictionnaire
 
@@ -154,6 +157,36 @@ def verifier_element_present(element):
         return True
     except:
         return False
+
+#Authentification
+
+def Authentification(login, mdp):
+    
+    connexion_page("https://monportail.siinergy.net/user/login?destination=/")
+    
+    champs_login = driver.find_element(By.ID,"edit-name")
+    champs_login.send_keys(login)
+
+    champs_mdp = driver.find_element(By.ID, "edit-pass")
+    champs_mdp.send_keys(mdp)
+
+    btn = driver.find_element(By.ID,"edit-submit")
+    
+    try:
+        btn.click()
+        print('success')
+    except:
+        print('fail')
+    
+    try:
+        mattermost = driver.find_elements(By.CLASS_NAME,"field__item")[12]
+        mattermost.click()
+        print('yes')
+        recuperer_donnees_pages()
+    except:
+        print('no')
+
+        
     
 #Filtrage des annonces
 
@@ -237,18 +270,22 @@ def filtre(villes="all", auteurs="all", agences="all", statuts="all", dernier_ed
         
         
 
-    #filtrage depuis le fichier data.json
-        
-    with open("D:/Users/martin.jautee/Documents/SII-OFFERS/data.json", 'r', encoding='utf-8') as fichier_annonces:
+    #filtrage depuis le fichier data.json 
+    with open("D:/Users/martin.jautee/Documents/SII-OFFERS/data.json",'r', encoding='utf-8') as fichier_annonces:
         annonces = json.load(fichier_annonces)
         liste_annonce = [annonce for annonce in annonces.values()]
     
     # Permet de verifier pour chaque annonce que l'annonce possède une valeur qui est presente dans les differents filtres qui sont les listes placé en paramètre. 
     liste_filtre = [annonce for annonce in liste_annonce if annonce['Lieu'] in villes and annonce['Author'] in auteurs and annonce['Agency'] in agences and annonce['Status'] in statuts and annonce['Last update by'] in dernier_editeurs] 
     liste_filtre = filtre_date(liste_filtre, nb_jour)
+
+    # Créer un fichier qui contient les annonces filtrée(s)
+    with open("D:/Users/martin.jautee/Documents/SII-OFFERS/annonces.json", "w" , encoding='utf-8') as fichier:
+        json.dump(liste_filtre,fichier,indent=4, ensure_ascii=False)
     
-    pprint(liste_filtre)
+    
     return liste_filtre
+
 
 
 def verif_elements_liste(elements, liste):
@@ -265,29 +302,96 @@ def verif_elements_liste(elements, liste):
     return all(element in liste for element in elements)
 
 
-#Action sur les annonces           
+#Republication des annonces
 
 def republication(liste):
-    
+
+    """
+    Cette fonction permet de recuperer les liens présent dans les dictionnaires contenant les annonces.
+    Un compteur s'incrémente à chaque fois qu'un annonce est republiée. 
+
+    Args:
+        liste (list): liste qui contient des annonces
+        
+    Return:
+        None 
+    """
+  
+    compteur = 0
     for annonces in liste:
         lien = annonces["lien republication"]
         try:
             driver.get(lien)
+            compteur += 1
             #driver.execute_script(f"window.open('{lien}', '_blank')")
-            print("action effectuée")
         except:
             print("lien invalide")
+    print(f"{compteur} annonce(s) republiée(s)")
+  
 
+#Gestion des notifications par mail
 
+json_file = open("D:/Users/martin.jautee/Documents/SII-OFFERS/config.json")
+conf_gmail = json.load(json_file)
+
+def mail_notif(nb_jour):
+
+    nb_jour = int(nb_jour)
+    #recuperer_donnees_pages()
+    with open("D:/Users/martin.jautee/Documents/SII-OFFERS/data.json",'r', encoding='utf-8') as fichier_annonces:
+        annonces = json.load(fichier_annonces)
+        liste_annonce = [annonce for annonce in annonces.values()]
+    
+    annonces = filtre_date(liste_annonce,nb_jour)
+    nombre_annonces_expirees = len(annonces)
+    mois = nb_jour // 31
+    msg_objet : str = ""
+    if mois == 0:
+        date = nb_jour
+        msg_objet = f"SII-OFFERS | {nombre_annonces_expirees} annonce(s) n'ont pas été republiée(s) depuis plus de {date} jours"
+    else:
+        date = mois
+        msg_objet = f" SII-OFFERS | {nombre_annonces_expirees} annonce(s) n'ont pas été republiée(s) depuis plus de {date} mois"
+
+    
+    i = 0
+    annonces_liste = []
+    for annonce in annonces:
+        i += 1
+        annonces_liste.append(f"Annonce {i}  | Titre : {annonce['Title']}  | Statut : {annonce['Status']} | Ville : {annonce['Lieu']} | Agence : {annonce['Agency']} | Auteur : {annonce['Author']} | Dernier éditeur : {annonce['Last update by']} | Date : {annonce['Updated Trier par ordre croissant']} \n\n")
+        contenu =  ''.join(annonces_liste)
+    
+    if nombre_annonces_expirees >= 1:
+        
+        msg = EmailMessage()
+        msg["to"] = "nitram.zaw@gmail.com" #destinataire
+        msg["from"] = conf_gmail['email']   #émetteur
+        msg["Subject"] = msg_objet #Objet du mail
+        msg.set_content("Liste des annonces : \n\n" + contenu)
+
+        with smtplib.SMTP_SSL(conf_gmail['server'],conf_gmail['port']) as smtp : 
+            smtp.login(conf_gmail['email'],conf_gmail['password'])
+            smtp.send_message(msg)
+    else:
+        pass
 
 if __name__=="__main__":
 
-    
+    """
     connexion_page(os.getcwd()+'/test/code.html')
     recuperer_donnees_pages()
-    test = filtre(statuts=['Unpublished'])
+    test = filtre(auteurs=['Robert'],villes=["Rennes,Lannion"])
     pprint(test)
-    #republication(test)
+    republication(test)
+    
+
+    parser = argparse.ArgumentParser()
+    parser.add_argument("login", help="username")
+    parser.add_argument("mdp", help="password")
+    args = parser.parse_args()
+    Authentification(args.login, args.mdp)
+    """
+    mail_notif(30)
     
 
     
