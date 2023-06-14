@@ -1,5 +1,137 @@
 [
     {
+        "Title": "Chef de projet expérimenté Infrastructure H/F",
+        "Référence": "CPEHLE",
+        "Agency": "SII Ouest",
+        "Lieu": "Rennes",
+        "Language": "French (France)",
+        "Status": "Published",
+        "Author": "hlefevre",
+        "Updated Trier par ordre croissant": "12/04/2023 - 16:29",
+        "Last update by": "timothee.potier",
+        "lien republication": "file:///D:/fr-FR/offer/republish/2010?destination=/fr-FR/admin/content/offers%3Ftitle%3D%26agency%3DAll%26sii_language%3DAll%26status%3DAll%26page%3D0"
+    },
+    {
+        "Title": "Chargé(e) de Ressources Humaines Confirmé(e) (H/F)",
+        "Référence": "CRHCRENN",
+        "Agency": "SII Ouest",
+        "Lieu": "Rennes",
+        "Language": "French (France)",
+        "Status": "Published",
+        "Author": "afromentoux",
+        "Updated Trier par ordre croissant": "07/04/2023 - 16:36",
+        "Last update by": "afromentoux",
+        "lien republication": "file:///D:/fr-FR/offer/republish/5199?destination=/fr-FR/admin/content/offers%3Ftitle%3D%26agency%3DAll%26sii_language%3DAll%26status%3DAll%26page%3D0"
+    },
+    {
+        "Title": "Architecte Testing (h/f)",
+        "Référence": "CTPE35",
+        "Agency": "SII Ouest",
+        "Lieu": "Rennes",
+        "Language": "French (France)",
+        "Status": "Published",
+        "Author": "mlemen",
+        "Updated Trier par ordre croissant": "03/04/2023 - 16:39",
+        "Last update by": "mlemen",
+        "lien republication": "file:///D:/fr-FR/offer/republish/4336?destination=/fr-FR/admin/content/offers%3Ftitle%3D%26agency%3DAll%26sii_language%3DAll%26status%3DAll%26page%3D0"
+    },
+    {
+        "Title": "Architecte Big Data H/F",
+        "Référence": "ABDMLM35",
+        "Agency": "SII Ouest",
+        "Lieu": "Rennes",
+        "Language": "French (France)",
+        "Status": "Published",
+        "Author": "mlemen",
+        "Updated Trier par ordre croissant": "03/04/2023 - 16:39",
+        "Last update by": "mlemen",
+        "lien republication": "file:///D:/fr-FR/offer/republish/4842?destination=/fr-FR/admin/content/offers%3Ftitle%3D%26agency%3DAll%26sii_language%3DAll%26status%3DAll%26page%3D0"
+    },
+    {
+        "Title": "Chef de projet Qualité / Performance Opérationnelle IT (H/F)",
+        "Référence": "IQP35MLM",
+        "Agency": "SII Ouest",
+        "Lieu": "Rennes",
+        "Language": "French (France)",
+        "Status": "Unpublished",
+        "Author": "mlemen",
+        "Updated Trier par ordre croissant": "03/04/2023 - 16:38",
+        "Last update by": "mlemen",
+        "lien republication": "https://chrome.google.com/webstore/category/extensions?hl=fr"
+    },
+    {
+        "Title": "Stagiaire Business Manager (H/F)",
+        "Référence": "STAGEBMRENAFR",
+        "Agency": "SII Ouest",
+        "Lieu": "Rennes",
+        "Language": "French (France)",
+        "Status": "Unpublished",
+        "Author": "afromentoux",
+        "Updated Trier par ordre croissant": "30/03/2023 - 10:32",
+        "Last update by": "afromentoux",
+        "lien republication": "file:///D:/fr-FR/offer/republish/3854?destination=/fr-FR/admin/content/offers%3Ftitle%3D%26agency%3DAll%26sii_language%3DAll%26status%3DAll%26page%3D0"
+    },
+    {
+        "Title": "Chargé(e) d'Accueil (H/F)",
+        "Référence": "CACDIREN",
+        "Agency": "SII Ouest",
+        "Lieu": "Rennes",
+        "Language": "French (France)",
+        "Status": "Unpublished",
+        "Author": "afromentoux",
+        "Updated Trier par ordre croissant": "30/03/2023 - 10:31",
+        "Last update by": "afromentoux",
+        "lien republication": "file:///D:/fr-FR/offer/republish/5039?destination=/fr-FR/admin/content/offers%3Ftitle%3D%26agency%3DAll%26sii_language%3DAll%26status%3DAll%26page%3D0"
+    },
+    {
+        "Title": "Responsable IT Interne (H/F)",
+        "Référence": "RITHLF",
+        "Agency": "SII Ouest",
+        "Lieu": "Rennes",
+        "Language": "French (France)",
+        "Status": "Published",
+        "Author": "afromentoux",
+        "Updated Trier par ordre croissant": "23/03/2023 - 09:13",
+        "Last update by": "afromentoux",
+        "lien republication": "file:///D:/fr-FR/offer/republish/3000?destination=/fr-FR/admin/content/offers%3Ftitle%3D%26agency%3DAll%26sii_language%3DAll%26status%3DAll%26page%3D0"
+    },
+    {
+        "Title": "Développeurs mobile iOS et Android (H/F)",
+        "Référence": "DEVMOB35/MVE",
+        "Agency": "SII Ouest",
+        "Lieu": "Rennes",
+        "Language": "French (France)",
+        "Status": "Published",
+        "Author": "bjouault",
+        "Updated Trier par ordre croissant": "21/03/2023 - 11:18",
+        "Last update by": "margaux.veuillot",
+        "lien republication": "file:///D:/fr-FR/offer/republish/5121?destination=/fr-FR/admin/content/offers%3Ftitle%3D%26agency%3DAll%26sii_language%3DAll%26status%3DAll%26page%3D0"
+    },
+    {
+        "Title": "Développeur Full Stack Java/Angular (H/F)",
+        "Référence": "DEVFS35/MVE",
+        "Agency": "SII Ouest",
+        "Lieu": "Rennes",
+        "Language": "French (France)",
+        "Status": "Published",
+        "Author": "bjouault",
+        "Updated Trier par ordre croissant": "15/03/2023 - 14:30",
+        "Last update by": "margaux.veuillot",
+        "lien republication": "file:///D:/fr-FR/offer/republish/2526?destination=/fr-FR/admin/content/offers%3Ftitle%3D%26agency%3DAll%26sii_language%3DAll%26status%3DAll%26page%3D0"
+    },
+    {
+        "Title": "Développeur VueJS expérimenté (H/F)",
+        "Référence": "DEVVUEJS35/MVE",
+        "Agency": "SII Ouest",
+        "Lieu": "Rennes",
+        "Language": "French (France)",
+        "Status": "Published",
+        "Author": "margaux.veuillot",
+        "Updated Trier par ordre croissant": "15/03/2023 - 11:53",
+        "Last update by": "margaux.veuillot",
+        "lien republication": "file:///D:/fr-FR/offer/republish/5037?destination=/fr-FR/admin/content/offers%3Ftitle%3D%26agency%3DAll%26sii_language%3DAll%26status%3DAll%26page%3D0"
+    },
+    {
         "Title": "Ingénieur Système SRE (H/F)",
         "Référence": "TP35SRE",
         "Agency": "SII Ouest",
@@ -24,6 +156,18 @@
         "lien republication": "file:///D:/fr-FR/offer/republish/5096?destination=/fr-FR/admin/content/offers%3Ftitle%3D%26agency%3DAll%26sii_language%3DAll%26status%3DAll%26page%3D0"
     },
     {
+        "Title": "Administrateur Système et Réseaux H/F",
+        "Référence": "ASR352",
+        "Agency": "SII Ouest",
+        "Lieu": "Rennes",
+        "Language": "French (France)",
+        "Status": "Published",
+        "Author": "Admin-lqSbNvM-…",
+        "Updated Trier par ordre croissant": "14/03/2023 - 12:22",
+        "Last update by": "timothee.potier",
+        "lien republication": "file:///D:/fr-FR/offer/republish/1563?destination=/fr-FR/admin/content/offers%3Ftitle%3D%26agency%3DAll%26sii_language%3DAll%26status%3DAll%26page%3D0"
+    },
+    {
         "Title": "Ingénieur VMware (H/F)",
         "Référence": "TPVIRTU35",
         "Agency": "SII Ouest",
@@ -36,6 +180,66 @@
         "lien republication": "file:///D:/fr-FR/offer/republish/4385?destination=/fr-FR/admin/content/offers%3Ftitle%3D%26agency%3DAll%26sii_language%3DAll%26status%3DAll%26page%3D0"
     },
     {
+        "Title": "Ingénieur Réseau H/F",
+        "Référence": "IRHLE",
+        "Agency": "SII Ouest",
+        "Lieu": "Rennes",
+        "Language": "French (France)",
+        "Status": "Published",
+        "Author": "hlefevre",
+        "Updated Trier par ordre croissant": "14/03/2023 - 12:22",
+        "Last update by": "timothee.potier",
+        "lien republication": "file:///D:/fr-FR/offer/republish/3219?destination=/fr-FR/admin/content/offers%3Ftitle%3D%26agency%3DAll%26sii_language%3DAll%26status%3DAll%26page%3D0"
+    },
+    {
+        "Title": "Ingénieur Réseaux et Sécurité H/F",
+        "Référence": "IRSHLE",
+        "Agency": "SII Ouest",
+        "Lieu": "Rennes",
+        "Language": "French (France)",
+        "Status": "Published",
+        "Author": "hlefevre",
+        "Updated Trier par ordre croissant": "14/03/2023 - 12:22",
+        "Last update by": "timothee.potier",
+        "lien republication": "file:///D:/fr-FR/offer/republish/2041?destination=/fr-FR/admin/content/offers%3Ftitle%3D%26agency%3DAll%26sii_language%3DAll%26status%3DAll%26page%3D0"
+    },
+    {
+        "Title": "Architecte Cloud H/F",
+        "Référence": "ACL1",
+        "Agency": "SII Ouest",
+        "Lieu": "Rennes",
+        "Language": "French (France)",
+        "Status": "Published",
+        "Author": "hlefevre",
+        "Updated Trier par ordre croissant": "14/03/2023 - 12:21",
+        "Last update by": "timothee.potier",
+        "lien republication": "file:///D:/fr-FR/offer/republish/1951?destination=/fr-FR/admin/content/offers%3Ftitle%3D%26agency%3DAll%26sii_language%3DAll%26status%3DAll%26page%3D0"
+    },
+    {
+        "Title": "Administrateur VMware H/F",
+        "Référence": "HLEAVM",
+        "Agency": "SII Ouest",
+        "Lieu": "Rennes",
+        "Language": "French (France)",
+        "Status": "Published",
+        "Author": "hlefevre",
+        "Updated Trier par ordre croissant": "14/03/2023 - 12:21",
+        "Last update by": "timothee.potier",
+        "lien republication": "file:///D:/fr-FR/offer/republish/3233?destination=/fr-FR/admin/content/offers%3Ftitle%3D%26agency%3DAll%26sii_language%3DAll%26status%3DAll%26page%3D0"
+    },
+    {
+        "Title": "Architecte Infrastructure H/F",
+        "Référence": "AI",
+        "Agency": "SII Ouest",
+        "Lieu": "Rennes",
+        "Language": "French (France)",
+        "Status": "Published",
+        "Author": "hlefevre",
+        "Updated Trier par ordre croissant": "14/03/2023 - 12:20",
+        "Last update by": "timothee.potier",
+        "lien republication": "file:///D:/fr-FR/offer/republish/1764?destination=/fr-FR/admin/content/offers%3Ftitle%3D%26agency%3DAll%26sii_language%3DAll%26status%3DAll%26page%3D0"
+    },
+    {
         "Title": "Ingénieur Système Linux H/F",
         "Référence": "TPLINUX35",
         "Agency": "SII Ouest",
@@ -46,5 +250,29 @@
         "Updated Trier par ordre croissant": "14/03/2023 - 12:20",
         "Last update by": "timothee.potier",
         "lien republication": "file:///D:/fr-FR/offer/republish/4994?destination=/fr-FR/admin/content/offers%3Ftitle%3D%26agency%3DAll%26sii_language%3DAll%26status%3DAll%26page%3D0"
+    },
+    {
+        "Title": "Développeur full stack Java/Angular Stagiaire (F/H)",
+        "Référence": "STAGE-DEV",
+        "Agency": "SII Ouest",
+        "Lieu": "Rennes",
+        "Language": "French (France)",
+        "Status": "Unpublished",
+        "Author": "bjouault",
+        "Updated Trier par ordre croissant": "28/02/2023 - 09:50",
+        "Last update by": "bjouault",
+        "lien republication": "file:///D:/fr-FR/offer/republish/4666?destination=/fr-FR/admin/content/offers%3Ftitle%3D%26agency%3DAll%26sii_language%3DAll%26status%3DAll%26page%3D0"
+    },
+    {
+        "Title": "TEST TEST",
+        "Référence": "CPEHLr",
+        "Agency": "SII Ouest",
+        "Lieu": "Rennes",
+        "Language": "French (France)",
+        "Status": "Published",
+        "Author": "TEST",
+        "Updated Trier par ordre croissant": "12/04/2023 - 16:29",
+        "Last update by": "timothee.potier",
+        "lien republication": "https://ent.univ-rennes1.fr/f/welcome/normal/render.uP"
     }
 ]

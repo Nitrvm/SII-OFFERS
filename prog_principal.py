@@ -132,12 +132,12 @@ def recuperer_donnees_pages():
         page_suivante = verifier_element_present("//li[@class='pager__item pager__item--next']/a")
         if page_suivante is True:
             driver.find_element(By.XPATH,"//li[@class='pager__item pager__item--next']/a").click()
-    with open("D:/Users/martin.jautee/Documents/SII-OFFERS/data.json", "w" , encoding='utf-8') as fichier:
+    with open("data.json", "w" , encoding='utf-8') as fichier:
         json.dump(dictionnaire,fichier,indent=4, ensure_ascii=False)
     dico_filtre = {"Lieu":"","Author":"","Agency":"","Status":"", "Last update by": ""}
     for key in dico_filtre.keys():
         dico_filtre[key]=list({value[key] for value in dictionnaire.values()})
-    with open("D:/Users/martin.jautee/Documents/SII-OFFERS/filtres.json", "w", encoding='utf-8') as fichier:
+    with open("filtres.json", "w", encoding='utf-8') as fichier:
         json.dump(dico_filtre,fichier,indent=4, ensure_ascii=False)
     return dictionnaire
 
@@ -179,15 +179,14 @@ def Authentification(login, mdp):
         print('fail')
     
     try:
-        mattermost = driver.find_elements(By.CLASS_NAME,"field__item")[12]
-        mattermost.click()
-        print('yes')
+        offers = driver.find_elements(By.CLASS_NAME,"field__item")[12]
+        offers.click()
+        print('OK')
         recuperer_donnees_pages()
     except:
-        print('no')
+        print('fail')
 
-        
-    
+
 #Filtrage des annonces
 
 def filtre_date(liste, nb_jour):
@@ -237,7 +236,7 @@ def filtre(villes="all", auteurs="all", agences="all", statuts="all", dernier_ed
 
     """
     
-    with open("D:/Users/martin.jautee/Documents/SII-OFFERS/filtres.json", "r", encoding='utf-8') as fichier_filtres:
+    with open("filtres.json", "r", encoding='utf-8') as fichier_filtres:
         filtres = json.load(fichier_filtres)
         
     villes = filtres["Lieu"] if villes == "all" else villes
@@ -271,7 +270,7 @@ def filtre(villes="all", auteurs="all", agences="all", statuts="all", dernier_ed
         
 
     #filtrage depuis le fichier data.json 
-    with open("D:/Users/martin.jautee/Documents/SII-OFFERS/data.json",'r', encoding='utf-8') as fichier_annonces:
+    with open("data.json",'r', encoding='utf-8') as fichier_annonces:
         annonces = json.load(fichier_annonces)
         liste_annonce = [annonce for annonce in annonces.values()]
     
@@ -280,7 +279,7 @@ def filtre(villes="all", auteurs="all", agences="all", statuts="all", dernier_ed
     liste_filtre = filtre_date(liste_filtre, nb_jour)
 
     # Créer un fichier qui contient les annonces filtrée(s)
-    with open("D:/Users/martin.jautee/Documents/SII-OFFERS/annonces.json", "w" , encoding='utf-8') as fichier:
+    with open("annonces.json", "w" , encoding='utf-8') as fichier:
         json.dump(liste_filtre,fichier,indent=4, ensure_ascii=False)
     
     
@@ -331,14 +330,14 @@ def republication(liste):
 
 #Gestion des notifications par mail
 
-json_file = open("D:/Users/martin.jautee/Documents/SII-OFFERS/config.json")
+json_file = open("config.json")
 conf_gmail = json.load(json_file)
 
 def mail_notif(nb_jour):
 
     nb_jour = int(nb_jour)
     #recuperer_donnees_pages()
-    with open("D:/Users/martin.jautee/Documents/SII-OFFERS/data.json",'r', encoding='utf-8') as fichier_annonces:
+    with open("data.json",'r', encoding='utf-8') as fichier_annonces:
         annonces = json.load(fichier_annonces)
         liste_annonce = [annonce for annonce in annonces.values()]
     
@@ -391,7 +390,7 @@ if __name__=="__main__":
     args = parser.parse_args()
     Authentification(args.login, args.mdp)
     """
-    mail_notif(30)
+    
     
 
     

@@ -1,125 +1,69 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<robot generator="Robot 6.0.2 (Python 3.11.3 on win32)" generated="20230607 14:20:19.473" rpa="false" schemaversion="3">
+<robot generator="Robot 6.0.2 (Python 3.11.3 on win32)" generated="20230613 22:20:40.996" rpa="false" schemaversion="3">
 <suite id="s1" name="Test" source="d:\Users\martin.jautee\Documents\SII-OFFERS\test.robot">
-<test id="s1-t1" name="Filtrage specifique" line="72">
-<kw name="Connexion à la page">
-<arg>${url}</arg>
-<tag>Connexion à la page</tag>
-<kw name="Connexion Page" library="prog_principal">
-<arg>${url}</arg>
-<doc>Ouvre une page web à l'aide de Selenium WebDriver.</doc>
-<status status="PASS" starttime="20230607 14:20:19.814" endtime="20230607 14:20:21.419"/>
-</kw>
-<status status="PASS" starttime="20230607 14:20:19.814" endtime="20230607 14:20:21.419"/>
-</kw>
+<test id="s1-t1" name="Filtrage" line="30">
 <kw name="Split String" library="String">
 <var>@{villes_def}</var>
 <arg>${villes_def}</arg>
 <arg>separator=,</arg>
 <doc>Splits the ``string`` using ``separator`` as a delimiter string.</doc>
-<msg timestamp="20230607 14:20:21.421" level="INFO">@{villes_def} = [ all ]</msg>
-<status status="PASS" starttime="20230607 14:20:21.420" endtime="20230607 14:20:21.423"/>
+<msg timestamp="20230613 22:20:41.347" level="INFO">@{villes_def} = [ all ]</msg>
+<status status="PASS" starttime="20230613 22:20:41.347" endtime="20230613 22:20:41.350"/>
 </kw>
 <kw name="Split String" library="String">
 <var>@{auteurs_def}</var>
 <arg>${auteurs_def}</arg>
 <arg>separator=,</arg>
 <doc>Splits the ``string`` using ``separator`` as a delimiter string.</doc>
-<msg timestamp="20230607 14:20:21.424" level="INFO">@{auteurs_def} = [ Admin-lqSbNvM-… ]</msg>
-<status status="PASS" starttime="20230607 14:20:21.423" endtime="20230607 14:20:21.424"/>
+<msg timestamp="20230613 22:20:41.351" level="INFO">@{auteurs_def} = [ all ]</msg>
+<status status="PASS" starttime="20230613 22:20:41.351" endtime="20230613 22:20:41.351"/>
 </kw>
 <kw name="Split String" library="String">
 <var>@{agences_def}</var>
 <arg>${agences_def}</arg>
 <arg>separator=,</arg>
 <doc>Splits the ``string`` using ``separator`` as a delimiter string.</doc>
-<msg timestamp="20230607 14:20:21.431" level="INFO">@{agences_def} = [ all ]</msg>
-<status status="PASS" starttime="20230607 14:20:21.429" endtime="20230607 14:20:21.431"/>
+<msg timestamp="20230613 22:20:41.352" level="INFO">@{agences_def} = [ all ]</msg>
+<status status="PASS" starttime="20230613 22:20:41.352" endtime="20230613 22:20:41.352"/>
 </kw>
 <kw name="Split String" library="String">
 <var>@{statuts_def}</var>
 <arg>${statuts_def}</arg>
 <arg>separator=,</arg>
 <doc>Splits the ``string`` using ``separator`` as a delimiter string.</doc>
-<msg timestamp="20230607 14:20:21.450" level="INFO">@{statuts_def} = [ all ]</msg>
-<status status="PASS" starttime="20230607 14:20:21.450" endtime="20230607 14:20:21.450"/>
+<msg timestamp="20230613 22:20:41.354" level="INFO">@{statuts_def} = [ all ]</msg>
+<status status="PASS" starttime="20230613 22:20:41.353" endtime="20230613 22:20:41.354"/>
 </kw>
 <kw name="Split String" library="String">
 <var>@{dernier_editeurs_def}</var>
 <arg>${dernier_editeurs_def}</arg>
 <arg>separator=,</arg>
 <doc>Splits the ``string`` using ``separator`` as a delimiter string.</doc>
-<msg timestamp="20230607 14:20:21.470" level="INFO">@{dernier_editeurs_def} = [ all ]</msg>
-<status status="PASS" starttime="20230607 14:20:21.469" endtime="20230607 14:20:21.470"/>
+<msg timestamp="20230613 22:20:41.355" level="INFO">@{dernier_editeurs_def} = [ all ]</msg>
+<status status="PASS" starttime="20230613 22:20:41.355" endtime="20230613 22:20:41.356"/>
 </kw>
-<kw name="Filtrage des annonces">
+<kw name="Filtre" library="prog_principal">
+<var>${liste}</var>
 <arg>${villes_def}</arg>
 <arg>${auteurs_def}</arg>
 <arg>${agences_def}</arg>
 <arg>${statuts_def}</arg>
 <arg>${dernier_editeurs_def}</arg>
 <arg>${nb_jour}</arg>
-<tag>Filtrage des annonces en fonction des élément placé en parametre</tag>
-<kw name="Run Keyword" library="BuiltIn">
-<var>${result}</var>
-<arg>Filtre</arg>
-<arg>${villes}</arg>
-<arg>${auteurs}</arg>
-<arg>${agences}</arg>
-<arg>${status}</arg>
-<arg>${dernier_editeurs}</arg>
-<arg>${nb_jour}</arg>
-<doc>Executes the given keyword with the given arguments.</doc>
-<kw name="Filtre" library="prog_principal">
-<arg>${villes}</arg>
-<arg>${auteurs}</arg>
-<arg>${agences}</arg>
-<arg>${status}</arg>
-<arg>${dernier_editeurs}</arg>
-<arg>${nb_jour}</arg>
 <doc>Cette fonction permet de filtrer les annonces contenu dans le fichier "data.json" à partir des différents filtres placés en parametre.
 On peut choisir lorqu'on appel la fonction de ne pas renseigné de filtre ce qui selectionne par défaut toutes les annonces. 
 On vérifie la présence des filtres en paramètre grâce au fichier 'filtres.json' et à la fonction "verif_elements_liste(element, liste)".</doc>
-<msg timestamp="20230607 14:20:21.485" level="INFO">Villes non comprises dans le filtre. Utilisation des villes par défaut.
+<msg timestamp="20230613 22:20:41.367" level="INFO">Villes non comprises dans le filtre. Utilisation des villes par défaut.
+Auteurs non compris dans le filtre. Utilisation des auteurs par défaut.
 Agences non comprises dans le filtre. Utilisation des agences par défaut.
 Statuts non compris dans le filtre. Utilisation des statuts par défaut.
 éditeurs non compris dans le filtre. Utilisation des éditeurs par défaut.</msg>
-<status status="PASS" starttime="20230607 14:20:21.474" endtime="20230607 14:20:21.485"/>
+<msg timestamp="20230613 22:20:41.368" level="INFO">${liste} = [{'Title': 'Chef de projet expérimenté Infrastructure H/F', 'Référence': 'CPEHLE', 'Agency': 'SII Ouest', 'Lieu': 'Rennes', 'Language': 'French (France)', 'Status': 'Published', 'Author': 'hlefevre', ...</msg>
+<status status="PASS" starttime="20230613 22:20:41.356" endtime="20230613 22:20:41.368"/>
 </kw>
-<msg timestamp="20230607 14:20:21.485" level="INFO">${result} = [{'Title': 'Chef de projet H/F', 'Référence': 'CDPD2901', 'Agency': 'SII Ouest', 'Lieu': 'Brest', 'Language': 'French (France)', 'Status': 'Published', 'Author': 'Admin-lqSbNvM-…', 'Updated Trier par ...</msg>
-<status status="PASS" starttime="20230607 14:20:21.473" endtime="20230607 14:20:21.486"/>
-</kw>
-<kw name="Set Variable" library="BuiltIn">
-<var>${liste}</var>
-<arg>${result}</arg>
-<doc>Returns the given values which can then be assigned to a variables.</doc>
-<msg timestamp="20230607 14:20:21.487" level="INFO">${liste} = [{'Title': 'Chef de projet H/F', 'Référence': 'CDPD2901', 'Agency': 'SII Ouest', 'Lieu': 'Brest', 'Language': 'French (France)', 'Status': 'Published', 'Author': 'Admin-lqSbNvM-…', 'Updated Trier par ...</msg>
-<status status="PASS" starttime="20230607 14:20:21.486" endtime="20230607 14:20:21.487"/>
-</kw>
-<kw name="Set Suite Variable" library="BuiltIn">
-<arg>${liste}</arg>
-<doc>Makes a variable available everywhere within the scope of the current suite.</doc>
-<msg timestamp="20230607 14:20:21.488" level="INFO">${liste} = [{'Title': 'Chef de projet H/F', 'Référence': 'CDPD2901', 'Agency': 'SII Ouest', 'Lieu': 'Brest', 'Language': 'French (France)', 'Status': 'Published', 'Author': 'Admin-lqSbNvM-…', 'Updated Trier par ...</msg>
-<status status="PASS" starttime="20230607 14:20:21.487" endtime="20230607 14:20:21.488"/>
-</kw>
-<kw name="Log" library="BuiltIn">
-<arg>${liste}</arg>
-<doc>Logs the given message with the given level.</doc>
-<msg timestamp="20230607 14:20:21.489" level="INFO">[{'Title': 'Chef de projet H/F', 'Référence': 'CDPD2901', 'Agency': 'SII Ouest', 'Lieu': 'Brest', 'Language': 'French (France)', 'Status': 'Published', 'Author': 'Admin-lqSbNvM-…', 'Updated Trier par ordre croissant': '04/04/2023 - 17:07', 'Last update by': 'marjorie.lhostis', 'lien republication': 'file:///D:/fr-FR/offer/republish/1566?destination=/fr-FR/admin/content/offers%3Ftitle%3D%26agency%3DAll%26sii_language%3DAll%26status%3DAll%26page%3D0'}, {'Title': 'Administrateur Système et Réseaux H/F', 'Référence': 'ASR352', 'Agency': 'SII Ouest', 'Lieu': 'Rennes', 'Language': 'French (France)', 'Status': 'Published', 'Author': 'Admin-lqSbNvM-…', 'Updated Trier par ordre croissant': '14/03/2023 - 12:22', 'Last update by': 'timothee.potier', 'lien republication': 'file:///D:/fr-FR/offer/republish/1563?destination=/fr-FR/admin/content/offers%3Ftitle%3D%26agency%3DAll%26sii_language%3DAll%26status%3DAll%26page%3D0'}]</msg>
-<status status="PASS" starttime="20230607 14:20:21.489" endtime="20230607 14:20:21.489"/>
-</kw>
-<status status="PASS" starttime="20230607 14:20:21.472" endtime="20230607 14:20:21.490"/>
-</kw>
-<kw name="Republication" library="prog_principal">
-<arg>${liste}</arg>
-<doc>Cette fonction permet de recuperer les liens présent dans les dictionnaires contenant les annonces.
-Un compteur s'incrémente à chaque fois qu'un annonce est republiée. </doc>
-<msg timestamp="20230607 14:20:21.751" level="INFO">2 annonce(s) republiée(s)</msg>
-<status status="PASS" starttime="20230607 14:20:21.491" endtime="20230607 14:20:21.751"/>
-</kw>
-<status status="PASS" starttime="20230607 14:20:19.813" endtime="20230607 14:20:21.752"/>
+<status status="PASS" starttime="20230613 22:20:41.346" endtime="20230613 22:20:41.369"/>
 </test>
-<status status="PASS" starttime="20230607 14:20:19.480" endtime="20230607 14:20:21.754"/>
+<status status="PASS" starttime="20230613 22:20:41.003" endtime="20230613 22:20:41.371"/>
 </suite>
 <statistics>
 <total>
